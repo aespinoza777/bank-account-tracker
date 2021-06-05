@@ -1,0 +1,11 @@
+<h1>Accounts</h1>
+
+<% @accounts.each do |account| %>
+    <%= image_tag account.bank.logo, width: "350" %>
+    <p><%= account.routing_number%></p>
+    <p><%= account.account_number%></p>
+    <p><%= number_to_currency(account.balance)%></p>
+    <p><%= link_to "My Account", account_path(account.id) %></p>
+    <p><%= link_to "Edit Account", edit_account_path(account.id) %></p>
+    <p><%= link_to "Delete Account", account_path(account.id), method: :delete %></p>
+<% end %>

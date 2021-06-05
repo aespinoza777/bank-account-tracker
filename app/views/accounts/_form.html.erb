@@ -1,0 +1,21 @@
+<%= form_with model: @account, local: true do |f| %>
+    <%if @account.errors.any?%> 
+        <div>
+            <ul> 
+                <% @account.errors.each do |error|%>
+                    <li> 
+                        <%= error.full_message %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :bank_id, value: @account.bank_id %>
+    <%= f.label :account_number %>
+    <%= f.text_field :account_number %>
+    <%= f.label :routing_number %>
+    <%= f.text_field :routing_number %>
+    <%= f.label :balance %>
+    <%= f.number_field :balance%>
+    <%= f.submit "create account"%>
+<% end %>

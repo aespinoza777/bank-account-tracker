@@ -1,0 +1,10 @@
+<h1>Banks</h1>
+
+<% @banks.each do |bank| %>
+    <%= image_tag bank.logo, width: "350" %>
+    <p><%= bank.name%></p>
+    <p><%= bank.address%></p>
+    <p><%= bank.phone_number%></p>
+    <p><%= link_to "Create Account", new_bank_account_path(bank) %></p>
+    <p><%= link_to "Accounts", bank_accounts_path(bank.id) %></p>
+    <% end %>

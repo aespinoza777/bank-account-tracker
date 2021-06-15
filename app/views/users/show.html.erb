@@ -1,6 +1,6 @@
-<h1>hello</h1>
 
- <p><%= @user.username%></p>
+
+ <p><%= @user.email%></p>
  <p><%= @user.name%></p>
  <p><%= link_to "Delete Profile", user_path(@user.id), method: :delete %></p>
  <p><%= link_to "Edit Profile", edit_user_path(@user.id) %></p>

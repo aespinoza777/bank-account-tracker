@@ -13,3 +13,10 @@ class User < ApplicationRecord
         end
     end
 end
+
+{
+    info: {
+        name: 'Bob',
+        email: 'bob@gmail.com'
+    }
+}

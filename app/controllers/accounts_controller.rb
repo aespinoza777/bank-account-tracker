@@ -5,6 +5,8 @@ class AccountsController < ApplicationController
         @account = Account.new(bank: bank)
     end
 
+    #/accounts
+    #/banks/2/accounts
     def index
         if params[:bank_id]
             bank = Bank.find(params[:bank_id])
@@ -16,6 +18,7 @@ class AccountsController < ApplicationController
 
     def edit
         @account = current_user.accounts.find(params[:id])
+        
     end
 
     def create
@@ -33,8 +36,11 @@ class AccountsController < ApplicationController
 
     def update
         @account = Account.find(params[:id])
-        @account.update(account_params)
+       if @account.update(account_params)
         redirect_to accounts_path
+       else
+        render :edit
+       end
     end
 
     def destroy

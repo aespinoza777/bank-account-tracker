@@ -5,8 +5,15 @@ class AccountsController < ApplicationController
         @account = Account.new(bank: bank)
     end
 
-    #/accounts
-    #/banks/2/accounts
+    def create
+        @account = current_user.accounts.build(account_params)
+        if @account.save 
+            redirect_to account_path(@account)
+        else 
+           render :new
+        end
+    end
+   
     def index
         if params[:bank_id]
             bank = Bank.find(params[:bank_id])
@@ -16,26 +23,17 @@ class AccountsController < ApplicationController
         end
     end
 
+    def show
+        @account = current_user.accounts.find(params[:id])
+    end
+
     def edit
         @account = current_user.accounts.find(params[:id])
         
     end
-
-    def create
-        @account = current_user.accounts.build(account_params)
-        if @account.save 
-            redirect_to account_path(@account)
-        else 
-           render :new
-        end
-    end
-
-    def show
-        @account = Account.find(params[:id])
-    end
-
+    
     def update
-        @account = Account.find(params[:id])
+        @account = current_user.accounts.find(params[:id])
        if @account.update(account_params)
         redirect_to accounts_path
        else
@@ -44,7 +42,7 @@ class AccountsController < ApplicationController
     end
 
     def destroy
-        @account = Account.find(params[:id])
+        @account = current_user.accounts.find(params[:id])
         @account.destroy
         redirect_to accounts_path
      end
